@@ -24,7 +24,8 @@ class _HomePageState extends State<HomePage> {
 
   _loadUserData() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var user = jsonDecode(localStorage.getString('user') ?? '');
+    var userStr = localStorage.getString('user');
+    var user = userStr != null ? jsonDecode(userStr) : null;
 
     if (user != null) {
       setState(() {
@@ -36,10 +37,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff151515),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Home'),
-        backgroundColor: Color(0xff151515),
+        backgroundColor: Colors.blue,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
